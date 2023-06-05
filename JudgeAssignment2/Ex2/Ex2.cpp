@@ -56,31 +56,34 @@ int main()
             int nIdx = 0;
             cin >> nIdx;
 
-            if (oClipBoard.empty())
-                continue;
-
-            string strSubString = oClipBoard.top();
-            oClipBoard.pop();
-
-            string strNewText;
-
-            for (size_t i = 0; i < strText.length(); i++)
+            if (!oClipBoard.empty())
             {
-                if (i == nIdx)
-                {
-                    if (strText[nIdx] == ' ')
-                        strNewText += ' ';
+                string strSubString = oClipBoard.top();
+                oClipBoard.pop();
 
-                    for (size_t j = 0; j < strSubString.length(); j++)
+                string strNewText;
+
+                for (size_t i = 0; i < strText.length(); i++)
+                {
+                    if (i == nIdx)
                     {
-                        strNewText += strSubString[j];
+                        if (strText[nIdx] == ' ')
+                            strNewText += ' ';
+
+                        for (size_t j = 0; j < strSubString.length(); j++)
+                        {
+                            strNewText += strSubString[j];
+                        }
                     }
+
+                    strNewText += strText[i];
+
+
                 }
 
-                strNewText += strText[i];
+                strText = strNewText;
             }
-
-            strText = strNewText;
+            
             cin >> strCommand;
         }
     }
